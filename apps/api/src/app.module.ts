@@ -3,6 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { OrganizationsModule } from './organizations/organizations.module';
+import { AssistantsModule } from './assistants/assistants.module';
+import { KnowledgeModule } from './knowledge/knowledge.module';
 
 const databaseConfigured = Boolean(
   process.env.DATABASE_URL || process.env.DB_HOST || process.env.DB_NAME,
@@ -38,6 +42,10 @@ const databaseConfigured = Boolean(
           }),
         ]
       : []),
+    AuthModule,
+    OrganizationsModule,
+    AssistantsModule,
+    KnowledgeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

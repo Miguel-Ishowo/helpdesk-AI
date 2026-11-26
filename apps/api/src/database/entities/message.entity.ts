@@ -22,6 +22,9 @@ export class Message extends BaseEntity {
   @Column({ type: 'enum', enum: FeedbackValue, nullable: true })
   feedback: FeedbackValue | null;
 
+  @Column({ type: 'int', nullable: true })
+  tokenCount: number | null;
+
   @Column({ type: 'jsonb', nullable: true })
   metadata: Record<string, unknown> | null;
 

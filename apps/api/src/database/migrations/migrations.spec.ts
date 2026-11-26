@@ -1,5 +1,6 @@
 ﻿import { InitCoreSchema1712800000000 } from './1712800000000-InitCoreSchema';
 import { AddPgvectorToDocumentChunks1712800001000 } from './1712800001000-AddPgvectorToDocumentChunks';
+import { EnhanceConversationsMessages1712800003000 } from './1712800003000-EnhanceConversationsMessages';
 import type { QueryRunner } from 'typeorm';
 
 describe('Migrations', () => {
@@ -38,5 +39,18 @@ describe('Migrations', () => {
     expect(joined).toContain('CREATE EXTENSION IF NOT EXISTS vector');
     expect(joined).toContain('embedding_vector" vector(1536)');
     expect(joined).toContain('USING ivfflat');
+  });
+
+  it('conversation/message enhancement migration adds expected columns/indexes', async () => {
+    const queries: string[] = [];
+    const qr = { query: async (sql: string) => { queries.push(sql); return undefined; } } as unknown as QueryRunner;
+    const m = new EnhanceConversationsMessages1712800003000();
+    await m.up(qr);
+    const joined = queries.join('\n');
+    expect(m.name).toBe('EnhanceConversationsMessages1712800003000');
+    expect(joined).toContain('organizationId');
+    expect(joined).toContain('IDX_conversations_assistant_createdAt');
+    expect(joined).toContain('title');
+    expect(joined).toContain('tokenCount');
   });
 });

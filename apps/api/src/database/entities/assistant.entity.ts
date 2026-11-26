@@ -1,4 +1,4 @@
-﻿import { Column, Entity, Index, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+﻿import { Column, Entity, Index, ManyToOne, JoinColumn, OneToMany, DeleteDateColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Organization } from './organization.entity';
 import { AssistantStatus } from './enums';
@@ -6,6 +6,7 @@ import { KnowledgeDocument } from './knowledge-document.entity';
 import { Conversation } from './conversation.entity';
 
 @Entity('assistants')
+@Index(['organizationId', 'status'])
 export class Assistant extends BaseEntity {
   @Column({ type: 'uuid' })
   @Index()
@@ -26,6 +27,12 @@ export class Assistant extends BaseEntity {
   @Column({ type: 'float', default: 0.7 })
   temperature: number;
 
+  @Column({ type: 'int', nullable: true })
+  maxTokens: number | null;
+
+  @Column({ type: 'jsonb', nullable: true })
+  modelSettings: Record<string, unknown> | null;
+
   @Column({ type: 'text', nullable: true })
   welcomeMessage: string | null;
 
@@ -38,6 +45,12 @@ export class Assistant extends BaseEntity {
 
   @Column({ type: 'simple-array', nullable: true })
   allowedDomains: string[] | null;
+
+  @Column({ type: 'jsonb', nullable: true })
+  widgetSettings: Record<string, unknown> | null;
+
+  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
+  deletedAt: Date | null;
 
   @ManyToOne(() => Organization, (org) => org.assistants, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'organizationId' })

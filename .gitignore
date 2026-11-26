@@ -16,3 +16,5 @@ Thumbs.db
 !.vscode/settings.json
 *.tsbuildinfo
 pnpm-debug.log*
+
+uploads/
