@@ -1,0 +1,13 @@
+{
+  "name": "@helpdesk/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "files": ["eslint.base.cjs", "prettier.config.cjs"],
+  "scripts": {
+    "build": "echo \"no build\"",
+    "typecheck": "echo \"no typecheck\"",
+    "lint": "echo \"no lint\"",
+    "test": "echo \"no tests\""
+  }
+}

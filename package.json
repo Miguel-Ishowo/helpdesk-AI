@@ -1,0 +1,25 @@
+{
+  "name": "helpdesk-ai",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@12.23.0",
+  "scripts": {
+    "build": "corepack pnpm -r --if-present build",
+    "dev": "corepack pnpm -r --parallel --if-present dev",
+    "lint": "corepack pnpm -r --if-present lint",
+    "test": "corepack pnpm -r --if-present test",
+    "typecheck": "corepack pnpm -r --if-present typecheck",
+    "format": "corepack pnpm -r --if-present format",
+    "format:check": "corepack pnpm -r --if-present format:check"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.74.0",
+    "@typescript-eslint/parser": "^8.74.0",
+    "eslint": "^9.39.5",
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2"
+  }
+}

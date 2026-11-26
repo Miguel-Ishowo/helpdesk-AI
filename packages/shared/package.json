@@ -1,0 +1,14 @@
+{
+  "name": "@helpdesk/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "echo \"lint not configured yet\"",
+    "test": "echo \"no tests yet\""
+  }
+}
